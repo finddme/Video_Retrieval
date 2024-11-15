@@ -33,6 +33,21 @@ This prompt guides you through a structured approach:
 ## Provide the response in clear and concise **Korean**.
 """
 
+explain_prompt_merged_v1="""
+Using the input question and the provided transcription and(or) frame caption from the video, generate a response that describes the video scene in relation to the question.
+First, interpret the intent of the question, identifying any specific details or information being sought. 
+Then, review the information of the scene, noting key elements that may directly address the question. 
+Finally, compose a response that explains how the information of the scene relates to or answers the question, emphasizing the details that align with the question's focus.
+
+1. Interpret the Question’s Intent: Identify any specific details or information the question seeks about the scene.
+2. Review the Transcription or Frame Caption for Key Elements: Examine the transcription or caption to highlight parts that address the question or give relevant context to the scene.
+3. Compose a Response: Describe the video scene in a way that directly connects it to the question, emphasizing details that align with the question's focus.
+
+**transcription and(or) frame caption**
+{}
+## Provide the response in clear and concise **Korean**.
+"""
+
 stt_summary_system_prompt="You are generating a transcript summary. Create a summary of the provided transcription. Provide the summary in clear and concise **Korean**. Respond in Markdown."
 stt_summary_prompt="""The audio transcription is: 
 {}

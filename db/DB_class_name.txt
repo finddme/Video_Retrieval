@@ -1,5 +1,0 @@
-none/////none
-stt_retrieval/////(ENG_CC)고윤정_나무위키_잘못_올라온_정보?_I_GoYoonjung,_이재_곧_죽습니다,_무빙
-captioning_retrieval/////(ENG_CC)고윤정_나무위키_잘못_올라온_정보?_I_GoYoonjung,_이재_곧_죽습니다,_무빙
-stt_retrieval/////환혼_2_에서_이재욱과_오열한_바로_그_장면!_'희수'_vs_'낙수'_고윤정의_선택은?_고윤정의_ASK_ME_ANYTHING_____ELLE_KOREA
-captioning_retrieval/////환혼_2_에서_이재욱과_오열한_바로_그_장면!_'희수'_vs_'낙수'_고윤정의_선택은?_고윤정의_ASK_ME_ANYTHING_____ELLE_KOREA

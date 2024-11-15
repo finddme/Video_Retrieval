@@ -47,7 +47,7 @@ class VideoSTT:
 
         return stt_result
 
-    def process_stt_by_minute(self, stt_data,url,vid_title):
+    def process_stt_by_minute(self, stt_data,url,vid_title,description):
         print("--- Segment STT Result ---")
         result = []
         
@@ -72,7 +72,8 @@ class VideoSTT:
                         "end": (current_minute + 1) * 60,
                         "text": " ".join(current_texts),
                         "url":url,
-                        "vid_title":vid_title
+                        "vid_title":vid_title,
+                        "description":description
                     })
                 
                 while current_minute + 1 < segment_start_minute:
@@ -82,7 +83,8 @@ class VideoSTT:
                         "end": (current_minute + 1) * 60,
                         "text": "",
                         "url":url,
-                        "vid_title":vid_title
+                        "vid_title":vid_title,
+                        "description":description
                     })
                 
                 current_minute = segment_start_minute
@@ -95,7 +97,8 @@ class VideoSTT:
                 "end": (current_minute + 1) * 60,
                 "text": " ".join(current_texts),
                 "url":url,
-                "vid_title":vid_title
+                "vid_title":vid_title,
+                "description":description
             })
         
         return result
@@ -105,8 +108,8 @@ class VideoSTT:
         with open(self.stt_output_path, 'w', encoding='utf-8') as outfile:
             json.dump(result, outfile,indent="\t",ensure_ascii=False)
 
-    def execute(self,url,vid_title,yt,main_directory):
+    def execute(self,url,vid_title,description,yt,main_directory):
         directory, self.video_path=self.youtube_video_download(url,vid_title,main_directory)
         stt_result=self.stt_with_whisper(directory, self.video_path)
-        self.minute_res=self.process_stt_by_minute(stt_result,url,vid_title)
+        self.minute_res=self.process_stt_by_minute(stt_result,url,vid_title,description)
         self.save_transcription_to_file(directory,self.minute_res)

@@ -47,7 +47,7 @@ class VideoCaptioning:
         print("--- Frame Extraction Done ---")
         return frames
     
-    def process_video(self, url, vid_title,video_path, interval_seconds=60):
+    def process_video(self, url, vid_title,video_path,description,interval_seconds=60):
         frames = self.extract_frames(video_path, interval_seconds)
         
         print("--- Extracted Frame captioning Start ---")
@@ -64,6 +64,7 @@ class VideoCaptioning:
             caption_result["caption"] = caption
             caption_result["url"] = url
             caption_result["vid_title"] = vid_title
+            caption_result["description"] = description
             captions.append(caption_result)
             # print(f"Processed frame at {timestamp}: {caption}")
         print("--- Frame Captioning Done ---")
@@ -76,10 +77,10 @@ class VideoCaptioning:
         with open(output_path, 'w', encoding='utf-8') as outfile:
             json.dump(captions, outfile,indent="\t",ensure_ascii=False)
     
-    def execute(self, url, vid_title,video_path, interval_seconds=60):
+    def execute(self,url,vid_title,description,video_path,interval_seconds=60):
         video_directory="/".join(video_path.split("/")[:-1])
         self.save_path=video_directory+"/video_captions.json"
-        self.captions = self.process_video(url,vid_title,video_path, interval_seconds=60)
+        self.captions = self.process_video(url,vid_title,video_path,description,interval_seconds=60)
         self.save_captions_to_file(self.captions, self.save_path)
 
 if __name__ == "__main__":

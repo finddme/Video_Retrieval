@@ -1,9 +1,9 @@
 import streamlit as st
 import requests
 import json
-"""
-streamlit run streamlit.py --server.port 8899
-"""
+
+# streamlit run streamlit.py --server.port 8899
+
 def main():
     st.title("Video Retrieval System")
     
@@ -43,18 +43,18 @@ def main():
                     except Exception as e:
                         st.error(f"Error occurred: {str(e)}")
                 else:
-                st.warning("Please enter a search query.")
+                    st.warning("Please enter a search query.")
     
     elif option == "Store Video Data":
         st.header("Store Video Data")
-        st.write("Store new video data for future searches.")
+        st.write("Store new video data for retrieval.")
         
         youtube_url = st.text_input("Enter YouTube URL:")
         if st.button("Store Data"):
-            with st.spinner("Data Storing ..."):
+            with st.spinner("Processing video data..."):
                 if youtube_url:
                     try:
-                        with st.spinner("Processing video data..."):
+                        with st.spinner("Data Storing ..."):
                             response = requests.post(
                                 f"{API_URL}/data_store",
                                 json={"youtube_url": youtube_url}

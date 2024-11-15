@@ -47,6 +47,7 @@ class Retrieve:
             time_metas=[r["end"] for r in documents_co["data"]["Get"][weaviate_class]]
             urls=[r["url"] for r in documents_co["data"]["Get"][weaviate_class]]
             titles=[r["vid_title"] for r in documents_co["data"]["Get"][weaviate_class]]
+            descriptions=[r["description"] for r in documents_co["data"]["Get"][weaviate_class]]
             documents=list(dict.fromkeys(documents))
 
             rerank_res = co.rerank(
@@ -63,6 +64,7 @@ class Retrieve:
                                 "time":time_metas[result.index],
                                 "url":urls[result.index],
                                 "title":titles[result.index],
+                                "description":descriptions[result.index],
                                 })
                 
             return final_result
@@ -73,6 +75,7 @@ class Retrieve:
             time_metas=[r["time"] for r in documents_co["data"]["Get"][weaviate_class]] 
             urls=[r["url"] for r in documents_co["data"]["Get"][weaviate_class]] 
             titles=[r["vid_title"] for r in documents_co["data"]["Get"][weaviate_class]] 
+            descriptions=[r["description"] for r in documents_co["data"]["Get"][weaviate_class]] 
             documents=list(dict.fromkeys(documents))
 
             rerank_res = co.rerank(
@@ -89,6 +92,7 @@ class Retrieve:
                                 "time":time_metas[result.index],
                                 "url":urls[result.index],
                                 "title":titles[result.index],
+                                "description":descriptions[result.index],
                                 })
                 
             return final_result
