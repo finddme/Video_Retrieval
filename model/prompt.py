@@ -63,16 +63,16 @@ Provide the summary in clear and concise **Korean**.
 """
 
 final_summary_system_prompt="You are generating a video summary. Create a summary of the provided video and its transcript. Provide the summary in clear and concise **Korean**. Respond in Markdown"
-final_summary_prompt="""These are the frame caption summary from the video: {}
+final_summary_prompt="""Provide the summary in clear and concise **Korean**.
+
+These are the frame caption summary from the video: {}
 
 The audio transcription summary is: {}
-
-Provide the summary in clear and concise **Korean**.
 """
 
 
 relevant_scoring_prompt = """Evaluate whether there is a semantic relevance between the following text and the user question. 
-If relevant, respond with 'yes'; if not, respond with 'no'. 
+If directly relevant, return 'yes'. If not, return 'no'.
 Include only 'yes' or 'no' in the response, with no additional text.
 
 Text: {}

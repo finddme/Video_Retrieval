@@ -11,6 +11,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--llm', type=str, default='together', 
                         choices=["openai","groq","claude","together"], required=False)
+    parser.add_argument('--db-sync', type=str, default=False,choices=[True,False], required=False)
     parser.add_argument('--main-class-name', type=str, default='retrieval', required=False)
 
     args = parser.parse_args()

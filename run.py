@@ -48,7 +48,8 @@ class RUN:
                     "\\":"_",
                     "#": "_",
                     "|": "_",
-                    " ":"_"}
+                    " ":"_",
+                    ".":"_"}
         replace_func = lambda text: reduce(lambda t, kv: t.replace(kv[0], kv[1]), replacements.items(), text)
         self.vid_title=yt.title
         self.vid_title=emoji.replace_emoji(self.vid_title, '_')
@@ -59,7 +60,8 @@ class RUN:
         self.description=extract_hashtags(self.description)
         self.description=" ".join(self.description)
 
-        db_class_sync_check(self.weaviate_client)
+        if self.args.db_sync:
+            db_class_sync_check(self.weaviate_client)
         saved_class_list, class_name_list, file_name_list=load_weaviate_class_list()
 
         print("--- check DB ---")
@@ -320,7 +322,7 @@ class RUN:
                                                                 self.captioning_class_name,
                                                                 self.completion)
 
-        summary_prompt=final_summary_prompt.format(caption_summary,stt_summary)
+        summary_prompt=final_summary_prompt.format(caption_summary,stt_summary)[:30000]
         for chunk in self.completion_stream(summary_prompt,final_summary_system_prompt):
             final_generate+=chunk
             yield f"{chunk}"
